@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Shop.Data.interfaces;
+using Shop.Data.mocks;
 
 namespace Shop
 {
@@ -10,6 +12,8 @@ namespace Shop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews(); // Используем AddControllersWithViews вместо AddMvc
+            services.AddTransient<IAllCars, MockCars>();
+            services.AddTransient<ICarsCategory, MockCategory>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
